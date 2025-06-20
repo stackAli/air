@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Application PDF</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        h1 { color: #333; }
+        .section { margin-bottom: 20px; }
+        .label { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Application Summary</h1>
+
+    <div class="section">
+        <div class="label">Name:</div>
+        {{ form.title }} {{ form.first_name }} {{ form.middle_name }} {{ form.last_name }}
+    </div>
+
+    <div class="section">
+        <div class="label">Date of Birth:</div>
+        {{ form.dob }}
+    </div>
+
+    <div class="section">
+        <div class="label">Gender:</div>
+        {{ form.gender }}
+    </div>
+
+    <div class="section">
+        <div class="label">Email:</div>
+        {{ form.primary_email }} <br>
+        {{ form.alternative_email }}
+    </div>
+
+    <div class="section">
+        <div class="label">Mobile:</div>
+        {{ form.mobile_number }} <br>
+        {{ form.home_phone }}
+    </div>
+
+    <div class="section">
+        <div class="label">Emergency Contact:</div>
+        {{ form.emergency_name }} - {{ form.emergency_relationship }} ({{ form.emergency_phone }})
+    </div>
+
+    <div class="section">
+        <div class="label">Nationality / Country of Birth / Citizenship:</div>
+        {{ form.nationality }} / {{ form.country_of_birth }} / {{ form.citizenship_status }}
+    </div>
+
+    <div class="section">
+        <div class="label">Education:</div>
+        Secondary: {{ form.secondary_education_level }} <br>
+        Highest Completed: {{ form.highest_completed_level }} <br>
+        Still Enrolled: {{ form.still_enrolled }} <br>
+        Previous Qualification: {{ form.previous_qualification }}
+    </div>
+
+    <div class="section">
+        <div class="label">Languages:</div>
+        English: {{ form.english_proficiency }} <br>
+        Other Languages: {{ form.other_languages }}
+    </div>
+</body>
+</html>

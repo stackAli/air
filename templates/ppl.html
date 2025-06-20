@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Header -->
+<header>
+  <section class="hero-section d-flex align-items-center text-white">
+    <div class="container-fluid px-5">
+      <div class="hero-text text-start p-4 rounded shadow">
+        <h1 class="display-4 fw-bold fs-2"> Private Pilot Licence (PPL)</h1>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- Tagline Below Header -->
+<section class="py-4 bg-light">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-md-8">
+        <p class="lead text-secondary fw-medium">
+          Unlock the skies. Take full command with our Private Pilot Licence (PPL) training.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 1: PPL Intro -->
+<section class="cpl-section py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-4">Take Your Training Further</h3>
+        <p class="text-muted fs-5">
+          The Private Pilot Licence (PPL) is your gateway to true aerial freedom. It qualifies you to fly further and with more passengers, opening the skies for cross-country flights in a wider range of airspace.
+        </p>
+        <p class="text-muted fs-5">
+          Designed for aspiring aviators seeking serious flying capability, the PPL is a critical step toward commercial training—or a fulfilling personal flying journey.
+        </p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="/static/ppl1.jpg" alt="PPL Training" class="img-fluid rounded-4 shadow" style="max-width: 100%;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 2: Diploma of Aviation -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="{{ url_for('static', filename='ppl3.jpg') }}" alt="PPL Training" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6">
+        <h2 class="fw-bold mb-4">Diploma of Aviation – Your Journey Through the PPL</h2>
+        <p class="text-muted fs-5">
+          Take your passion for flying to new heights. The Diploma of Aviation integrates comprehensive Private Pilot Licence (PPL) training with academic study to help you build solid piloting skills.
+        </p>
+        <p class="text-muted fs-5">
+          This structured full-time program is ideal for those looking to progress confidently toward commercial flight training.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- CTA Apply Section -->
+<section class="apply-section position-relative text-center text-white d-flex align-items-center">
+  <div class="overlay-dark position-absolute top-0 start-0 w-100 h-100"></div>
+  <div class="container position-relative content-wrapper">
+    <div class="bg-white text-dark p-5 rounded-4 shadow mx-auto content-box">
+      <h2 class="fw-bold mb-3">Ready to Begin Your Journey?</h2>
+      <p class="mb-4 fs-5">Take the first step toward a career in aviation by applying today or reaching out to us for more information.</p>
+      <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+        <a href="/apply" class="btn btn-primary px-4">Apply for this Course</a>
+        <a href="/contact" class="btn btn-outline-dark px-4">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Styles -->
+<style>
+  .apply-section {
+    background-image: url('{{ url_for("static", filename="cpl3.jpg") }}');
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+  }
+
+  .overlay-dark {
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+
+  .content-wrapper {
+    z-index: 2;
+  }
+
+  .content-box {
+    max-width: 600px;
+  }
+
+  .cpl-section {
+    background-color: #8a7db2;
+    color: black;
+  }
+
+  .hero-section {
+    background-image: url('{{ url_for("static", filename="cpl1.jpg") }}');
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 56px);
+    width: 100%;
+    padding-top: 56px;
+  }
+
+  .hero-text {
+    background-color: rgba(237, 233, 233, 0.6);
+    max-width: 600px;
+    margin-left: auto;
+    margin-top: 150px;
+    color: #281e46;
+  }
+
+  @media (max-width: 576px) {
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .contact-section {
+    background: linear-gradient(to right, #f5f7fa, #000000);
+    padding: 60px 0;
+    
+  }
+
+  .contact-info h4 {
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .contact-info p {
+    font-size: 1.05rem;
+    color: #555;
+  }
+
+  .contact-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .form-control {
+    border-radius: 10px;
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .contact-map iframe {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-primary {
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+</style>
+
+<section class="contact-section">
+  <div class="container">
+    <h1 class="text-center mb-5 fw-bold text-dark"> Contact Us</h1>
+
+    <div class="row g-5">
+      <!-- Contact Info -->
+      <div class="col-md-5 contact-info">
+        <h4>Our Address</h4>
+        <p>
+          Aviation College of Excellence<br>
+          2nd Floor, Aviation Plaza, Johar Town<br>
+          Lahore, Pakistan
+        </p>
+
+        <h4> Phone</h4>
+        <p>+92 300 1234567</p>
+
+        <h4> Email</h4>
+        <p>info@aviationcollege.pk</p>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-md-7">
+        <div class="contact-form">
+          <h4 class="mb-4">Send Us a Message</h4>
+          <form method="POST" action="#">
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea class="form-control" id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="row mt-5">
+      <div class="col contact-map">
+        <h4 class="text-center mb-3 fw-semibold"> Find Us on the Map</h4>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://maps.google.com/maps?q=johar%20town%20lahore&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

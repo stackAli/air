@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .course-card {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .course-card:hover {
+    transform: scale(1.03);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .course-card:hover .overlay {
+    opacity: 1;
+  }
+  .courses-section{
+    
+    background-color: #4b3d78;
+  }
+</style>
+<!-- 🛠 Services Hero -->
+<section class="services-hero py-5 text-white text-center" style="background-color: #001f3f;">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Our Services</h1>
+    <p class="lead mt-3">Comprehensive training and aviation solutions for every aspiring pilot and engineer.</p>
+  </div>
+</section>
+
+<!-- 💼 Services List -->
+<section class="courses-section py-5 ">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold display-5 text-black">Our Courses</h2>
+    <div class="row g-4 justify-content-center">
+
+      <!-- TIF Course -->
+      <div class="col-md-6 col-lg-5">
+        <div class="course-card position-relative overflow-hidden rounded-4 shadow" style="background-image: url('/static/cpl.jpg');">
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h4 class="text-white fw-bold">Trial Introductory Flights (TIF)</h4>
+            <p class="text-light px-3">Experience the thrill of flying with our Trial Introductory Flight (TIF) — your first step into the world of aviation</p>
+            <a href="/tif" class="btn btn-light btn-sm mt-2">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RPL Course -->
+      <div class="col-md-6 col-lg-5">
+        <div class="course-card position-relative overflow-hidden rounded-4 shadow" style="background-image: url('/static/rpl.jpg');">
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h4 class="text-white fw-bold">Recreational Pilot License (RPL)</h4>
+            <p class="text-light px-3">Fly for leisure with certified skills and explore the skies on your own terms.</p>
+            <a href="/rpl" class="btn btn-light btn-sm mt-2">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- PPL Course -->
+      <div class="col-md-6 col-lg-5">
+        <div class="course-card position-relative overflow-hidden rounded-4 shadow" style="background-image: url('/static/ppl.jpg');">
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h4 class="text-white fw-bold">Private Pilot Liscence (PPL)</h4>
+            <p class="text-light px-3">Earn your wings with the Private Pilot Licence (PPL) — your gateway to flying for fun, travel, or future aviation pursuits.</p>
+            <a href="/ppl" class="btn btn-light btn-sm mt-2">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

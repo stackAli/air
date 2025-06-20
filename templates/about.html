@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+  <h1 class="text-center mb-4 ">About Our Aviation College</h1>
+
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 mb-4 mb-md-0">
+      <img src="{{ url_for('static', filename='aviation-about.jpg') }}" class="img-fluid rounded shadow" alt="Aviation Campus">
+    </div>
+    <div class="col-md-6">
+      <h3 class="mb-3">Soaring Towards Excellence</h3>
+      <p>
+        Founded with a commitment to shape the future of aviation, our college stands as a premier institute offering internationally accredited programs in pilot training.
+      </p>
+      <p>
+        Our purpose-built campus includes flight simulators, hangars, and interactive classrooms—ensuring our students receive the most immersive and hands-on training experience possible.
+      </p>
+      <p>
+        If you aim to become a pilot we are here to launch your aviation journey with integrity and excellence.
+      </p>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow p-4 border-0">
+        <h4 class="text-primary"> Our Mission</h4>
+        <p class="mt-2">
+          To deliver world-class aviation education, inspiring leadership, innovation, and global responsibility.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow p-4 border-0">
+        <h4 class="text-primary"> Our Vision</h4>
+        <p class="mt-2">
+          To be a global leader in aviation training and education, producing professionals who elevate the industry.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow p-4 border-0">
+        <h4 class="text-primary"> Our Values</h4>
+        <p class="mt-2">
+          Safety, Integrity, Excellence, and Innovation—at the heart of everything we teach and do.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="moorabbin-section py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center flex-md-row-reverse">
+
+      <!-- Images Column -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="d-flex flex-row align-items-start">
+          <img src="/static/morabbin1.jpg" class="img-fluid rounded-4 shadow me-3" style="max-width: 50%;" alt="Moorabbin Runway">
+          <img src="/static/morabbin2.jpg" class="img-fluid rounded-4 shadow mt-4" style="max-width: 50%;" alt="RVAC Training">
+        </div>
+      </div>
+
+      <!-- Text Column -->
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-3 text-dark">Why Train at Moorabbin Airport?</h3>
+        <p class="text-muted fs-5">
+          Based at Moorabbin Airport — Victoria’s top hub for general aviation — GowldWings benefits from world-class flight training conditions. 
+        </p>
+        <p class="text-muted fs-5">
+          With five active runways, 13km+ of sealed surfaces, and a network of over 40 aviation businesses (covering flight ops, maintenance, simulators, and testing), students experience a professional training environment.
+        </p>
+        <p class="text-muted fs-5">
+          Hosting around 250,000 movements annually — most of which are training — Moorabbin remains curfew-free and operates 24/7. Add to that a dedicated pilot shop, and it's easy to see why GoldWings is the ideal place to launch your aviation career.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<style>
+
+  .container{
+    margin-top: 10px;
+    margin-bottom: 50px;
+
+  } 
+
+  .moorabbin-section img:first-child {
+    margin-top: 0;
+  }
+
+  .moorabbin-section img:last-child {
+    margin-top: -10px;
+  }
+
+  @media (max-width: 768px) {
+    .moorabbin-section img:last-child {
+      margin-left: 0 !important;
+    }
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ✈️ Semantic Hero Section -->
+<header>
+  <section class="hero-section d-flex align-items-center text-white">
+    <div class="container-fluid px-5">
+      <div class="hero-text text-start p-4 rounded shadow">
+        <h1 class="display-4 fw-bold fs-3">Take off with confidence — your aviation journey begins here</h1>
+        <p class="lead fw-light">Where your flight begins — Learn, Train & Soar with GoldWings</p>
+      </div>
+    </div>
+  </section>
+</header>
+<!-- 📝 Text Section -->
+<section class="text-section py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <h2 class="mb-4 text-center">Empowering Future Aviators with Excellence in Training and Vision in Flight</h2>
+
+        <p>
+          Welcome to <strong>GoldWings Aviation Academy</strong> — where passion takes flight and futures are built in the skies.We offer a rigorous and immersive learning experience that equips aspiring pilots and aviation professionals with the skills, confidence, and discipline needed to excel in today’s dynamic aerospace industry. 
+        </p>
+
+        <p>
+          Whether you’re new to aviation or looking to sharpen your flying edge, GoldWings equips you with the knowledge, hands-on training, and confidence to soar. 
+        </p>
+        
+        <p>
+          With professional instructors, certified training programs, and a culture of discipline and leadership, our school stands tall among the rest. So yes, we’re proud — and we think you should be too.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ✈️ Our Courses Section -->
+<section class="courses-section py-5 ">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold display-5 text-black">Our Courses</h2>
+    <div class="row g-4 justify-content-center">
+
+      <!-- TIF Course -->
+      <div class="col-md-6 col-lg-5">
+        <div class="course-card position-relative overflow-hidden rounded-4 shadow" style="background-image: url('/static/cpl.jpg');">
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h4 class="text-white fw-bold">Trial Introductory Flights (TIF)</h4>
+            <p class="text-light px-3">Experience the thrill of flying with our Trial Introductory Flight (TIF) — your first step into the world of aviation</p>
+            <a href="/tif" class="btn btn-light btn-sm mt-2">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RPL Course -->
+      <div class="col-md-6 col-lg-5">
+        <div class="course-card position-relative overflow-hidden rounded-4 shadow" style="background-image: url('/static/rpl.jpg');">
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h4 class="text-white fw-bold">Recreational Pilot License (RPL)</h4>
+            <p class="text-light px-3">Fly for leisure with certified skills and explore the skies on your own terms.</p>
+            <a href="/services" class="btn btn-light btn-sm mt-2">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- PPL Course -->
+      <div class="col-md-6 col-lg-5">
+        <div class="course-card position-relative overflow-hidden rounded-4 shadow" style="background-image: url('/static/ppl.jpg');">
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h4 class="text-white fw-bold">Private Pilot Liscence (PPL)</h4>
+            <p class="text-light px-3">Earn your wings with the Private Pilot Licence (PPL) — your gateway to flying for fun, travel, or future aviation pursuits.</p>
+            <a href="/ppl" class="btn btn-light btn-sm mt-2">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .course-card {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .course-card:hover {
+    transform: scale(1.03);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .course-card:hover .overlay {
+    opacity: 1;
+  }
+  .courses-section{
+    
+    background-color: #4b3d78;
+  }
+</style>
+
+<section class="container py-5">
+  <h2 class="text-center mb-4">Gallery</h2>
+  <div class="row justify-content-center">
+
+    <!-- Gallery Box 1 -->
+    <div class="col-6 col-md-3" style="margin-top: 60px;">
+      <div class="card shadow rounded">
+        <img src="{{ url_for('static', filename='a1.jpg') }}" class="card-img-top rounded" alt="Gallery 1">
+      </div>
+    </div>
+
+    <!-- Gallery Box 2 -->
+    <div class="col-6 col-md-3" style="margin-top: 40px;">
+      <div class="card shadow rounded">
+        <img src="{{ url_for('static', filename='a2.jpg') }}" class="card-img-top rounded" alt="Gallery 2">
+      </div>
+    </div>
+
+    <!-- Gallery Box 3 -->
+    <div class="col-6 col-md-3" style="margin-top: 20px;">
+      <div class="card shadow rounded">
+        <img src="{{ url_for('static', filename='a3.jpg') }}" class="card-img-top rounded" alt="Gallery 3">
+      </div>
+    </div>
+
+    <!-- Gallery Box 4 -->
+    <div class="col-6 col-md-3" style="margin-top: 0;">
+      <div class="card shadow rounded">
+        <img src="{{ url_for('static', filename='a5.jpg') }}" class="card-img-top rounded" alt="Gallery 4">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<style>
+  .hero-section {
+    background-image: url('{{ url_for("static", filename="image1.jpg") }}');
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 56px); /* Adjust for navbar height */
+    width: 100%;
+    padding-top: 56px; /* Optional: if navbar is fixed */
+  }
+
+  .hero-text {
+    background-color: rgba(237, 233, 233, 0.6);
+    max-width: 600px;
+    margin-left: auto;
+    margin-top: 150px;
+    color: #281e46;
+    
+  }
+
+  @media (max-width: 576px) {
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+    .hero-text p {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+{% endblock %}

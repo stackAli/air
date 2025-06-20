@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+  <h2 class="text-center mb-4">Create a New Account</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form method="POST" action="/signup" onsubmit="return validatePasswordMatch()">
+        <div class="mb-3">
+          <label for="fullname" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullname" name="fullname" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirm_password" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        
+
+        <button type="submit" class="btn btn-success w-100">Sign Up</button>
+
+        <p class="text-center mt-3">
+          Already have an account? <a href="/login">Login here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  function validatePasswordMatch() {
+    const pass = document.getElementById("password").value;
+    const confirm = document.getElementById("confirm_password").value;
+    if (pass !== confirm) {
+      alert("Passwords do not match.");
+      return false;
+    }
+    return true;
+  }
+</script>
+{% endblock %}
