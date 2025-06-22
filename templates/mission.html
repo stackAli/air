@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .mission-section {
+    padding: 60px 0;
+    background-color: #f5f7fa;
+  }
+
+  .mission-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1e2a38;
+  }
+
+  .mission-subtitle {
+    font-size: 1.15rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .mission-card {
+    background: white;
+    border-left: 5px solid #ffcc00;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+  }
+
+  .mission-card h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2e3b4e;
+  }
+
+  .mission-card p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #495057;
+  }
+
+  .icon-circle {
+    background-color: #ffcc00;
+    color: #1e2a38;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 576px) {
+    .mission-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<section class="mission-section container">
+  <h1 class="mission-title">Our Mission</h1>
+  <p class="mission-subtitle">At the heart of everything we do is a commitment to safe, inclusive, and world-class aviation training.</p>
+
+  <!-- Mission Overview -->
+  <div class="mission-card">
+    <h4><span class="icon-circle">1</span>Inspiring the Next Generation</h4>
+    <p>
+      At Goldwing’s Aviation, our mission is to inspire and develop the next generation of aviation professionals
+      through world-class, safe, and personalised training.
+    </p>
+    <p>
+      We are a dedicated flight training organisation committed to equipping future pilots with the skills, knowledge,
+      and mindset needed to thrive in the aviation industry. From the fundamentals of flight to professional mentoring,
+      our programs blend hands-on experience with industry-standard theory.
+    </p>
+  </div>
+
+  <!-- Safety -->
+  <div class="mission-card">
+    <h4><span class="icon-circle">2</span>Safety at Our Core</h4>
+    <p>
+      Safety is at the core of everything we do—we provide secure, supportive training environments
+      that prepare students for the real-world responsibilities of a pilot.
+    </p>
+    <p>
+      With a focus on both technical excellence and essential non-technical skills,
+      we strive to meet global standards and ensure our graduates are competitive in the aviation industry.
+    </p>
+  </div>
+
+  <!-- Inclusion -->
+  <div class="mission-card">
+    <h4><span class="icon-circle">3</span>Welcoming Everyone</h4>
+    <p>
+      Everyone is welcome at Goldwing’s. We celebrate students of all backgrounds, experiences, and abilities.
+      Whether you’re just starting out or returning to aviation after time away,
+      our no-judgement culture fosters confidence, respect, and belonging.
+    </p>
+    <p>
+      We embrace varied learning styles and are committed to supporting each individual’s journey—
+      because aviation should be accessible to all who dream of flying.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

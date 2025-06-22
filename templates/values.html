@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .values-section {
+    padding: 60px 0;
+    background-color: #f9fafc;
+  }
+
+  .values-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1e2a38;
+  }
+
+  .value-card {
+    background: white;
+    border-left: 5px solid #ffc107;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .value-card h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+
+  .value-card p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #495057;
+  }
+
+  .icon-badge {
+    width: 45px;
+    height: 45px;
+    background-color: #ffc107;
+    color: #1e2a38;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+  }
+
+  @media (max-width: 576px) {
+    .values-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<section class="values-section container">
+  <h1 class="values-title mb-5">Our Values</h1>
+
+  <!-- Safety First -->
+  <div class="value-card">
+    <h4><span class="icon-badge">1</span>Safety First</h4>
+    <p>
+      Safety is at the heart of everything we do. From flight operations to daily decisions,
+      we foster a culture where the well-being of our students, staff, and community comes first.
+    </p>
+  </div>
+
+  <!-- Diversity and Inclusion -->
+  <div class="value-card">
+    <h4><span class="icon-badge">2</span>Diversity and Inclusion</h4>
+    <p>
+      We proudly support a diverse student body, welcoming individuals of all ages, backgrounds, and learning styles.
+      Our tailored approach embraces adult learning principles, creating an inclusive and positive training environment
+      where everyone feels valued.
+    </p>
+  </div>
+
+  <!-- Community Engagement -->
+  <div class="value-card">
+    <h4><span class="icon-badge">3</span>Community Engagement</h4>
+    <p>
+      Goldwing’s is more than a flight school—it’s a community. We promote collaboration among students, families, and instructors,
+      encouraging shared knowledge and mutual support. Through local partnerships and a welcoming atmosphere,
+      we aim to positively contribute to the broader aviation community.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

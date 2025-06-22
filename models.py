@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
         db.Enum('Admin', 'User', name='role_enum'),
         nullable=False,
         default='User'
-        )
+    )
 
     # One-to-One Relationships
     profile = db.relationship('UserProfile', backref='user', uselist=False, cascade='all, delete')
@@ -29,18 +29,17 @@ class UserProfile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True)
 
-    title = db.Column(db.Enum('Mr', 'Mrs', 'Miss', 'Ms',  name='title_enum'), nullable=False)
+    title = db.Column(db.String(10), nullable=False, default='Mr')
+
     first_name = db.Column(db.String(100), nullable=False)
     middle_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100), nullable=False)
     date_of_birth = db.Column(db.Date, nullable=False)
     gender = db.Column(db.Enum('Male', 'Female', 'Other', name='gender_enum'), nullable=False)
 
-    # 📞 Contact
+    # 📞 Contact (Updated)
     primary_email = db.Column(db.String(255), nullable=False)
-    alternative_email = db.Column(db.String(255))
     mobile_number = db.Column(db.String(20), nullable=False)
-    home_phone = db.Column(db.String(20))
     emergency_name = db.Column(db.String(100), nullable=False)
     emergency_relationship = db.Column(db.String(50), nullable=False)
     emergency_phone = db.Column(db.String(20), nullable=False)

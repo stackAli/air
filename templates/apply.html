@@ -5,18 +5,9 @@
   <form method="POST">
 
     <!-- 👤 Personal Details -->
-    <section class="p-4 mb-4  rounded shadow-sm border" style="background-color: #e7d8f7;">
+    <section class="p-4 mb-4 rounded shadow-sm border" style="background-color: #e7d8f7;">
       <h4> Personal Details</h4>
       <div class="row mb-3">
-        <div class="col-md-4">
-          <label class="form-label">Title</label>
-          <select class="form-select" name="title" required>
-            <option value="">Select</option>
-            {% for t in title_choices %}
-              <option value="{{ t }}">{{ t }}</option>
-            {% endfor %}
-          </select>
-        </div>
         <div class="col-md-4">
           <label class="form-label">First Name</label>
           <input class="form-control" type="text" name="first_name" required>
@@ -25,17 +16,17 @@
           <label class="form-label">Middle Name</label>
           <input class="form-control" type="text" name="middle_name">
         </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label class="form-label">Last Name</label>
           <input class="form-control" type="text" name="last_name" required>
         </div>
-        <div class="col-md-3">
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
           <label class="form-label">Date of Birth</label>
           <input class="form-control" type="date" name="dob" required>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
           <label class="form-label">Gender</label>
           <select class="form-select" name="gender" required>
             <option value="">Select</option>
@@ -48,7 +39,7 @@
     </section>
 
     <!-- 📞 Contact -->
-    <section class="p-4 mb-4  rounded shadow-sm border" style="background-color: #e7d8f7;">
+    <section class="p-4 mb-4 rounded shadow-sm border" style="background-color: #e7d8f7;">
       <h4>Contact</h4>
       <div class="row mb-3">
         <div class="col-md-6">
@@ -56,18 +47,8 @@
           <input class="form-control" type="email" name="primary_email" required>
         </div>
         <div class="col-md-6">
-          <label class="form-label">Alternative Email</label>
-          <input class="form-control" type="email" name="alternative_email">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
           <label class="form-label">Mobile Number</label>
           <input class="form-control" type="text" name="mobile_number" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Home Phone</label>
-          <input class="form-control" type="text" name="home_phone">
         </div>
       </div>
       <div class="row mb-3">
@@ -87,7 +68,7 @@
     </section>
 
     <!-- 🌍 Citizenship -->
-    <section class="p-4 mb-4  rounded shadow-sm border" style="background-color: #e7d8f7;">
+    <section class="p-4 mb-4 rounded shadow-sm border" style="background-color: #e7d8f7;">
       <h4>Citizenship</h4>
       <div class="row mb-3">
         <div class="col-md-6">
@@ -113,7 +94,7 @@
     </section>
 
     <!-- 🎓 Education -->
-    <section class="p-4 mb-4  rounded shadow-sm border" style="background-color: #e7d8f7;">
+    <section class="p-4 mb-4 rounded shadow-sm border" style="background-color: #e7d8f7;">
       <h4>Education</h4>
       <div class="row mb-3">
         <div class="col-md-6">
@@ -145,7 +126,7 @@
     </section>
 
     <!-- 🗣️ Language Skills -->
-    <section class="p-4 mb-4  rounded shadow-sm border" style="background-color: #e7d8f7;">
+    <section class="p-4 mb-4 rounded shadow-sm border" style="background-color: #e7d8f7;">
       <h4>Language Skills</h4>
       <div class="row mb-3">
         <div class="col-md-6">

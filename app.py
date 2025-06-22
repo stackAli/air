@@ -1,8 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, send_file
-from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from flask_mail import Mail, Message
-from models import db, User, UserProfile, EducationDetail, LanguageSkill
-from werkzeug.security import generate_password_hash, check_password_hash
+from models import db, UserProfile, EducationDetail, LanguageSkill, User
 from datetime import datetime
 from io import BytesIO
 from xhtml2pdf import pisa
@@ -18,18 +16,11 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'info.goldwingsaviation@gmail.com'
-app.config['MAIL_PASSWORD'] = 'bclh ncrq aawi rmeg' 
+app.config['MAIL_PASSWORD'] = 'bclh ncrq aawi rmeg'
 mail = Mail(app)
 
-# Init DB and Login Manager
+# Init DB
 db.init_app(app)
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 @app.route('/')
 def home():
@@ -37,7 +28,7 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template("about.html", page="about")
+    return render_template("about.html", page="About")
 
 @app.route('/services')
 def services():
@@ -50,10 +41,9 @@ def contact():
         email = request.form['email']
         message = request.form['message']
 
-        # Email to admin
         msg = Message(subject="New Contact Query",
                       sender=app.config['MAIL_USERNAME'],
-                      recipients=['info.goldwingsaviation@gmail.com'])  # Admin Email
+                      recipients=['info.goldwingsaviation@gmail.com'])
         msg.body = f"You have received a new contact message:\n\nName: {name}\nEmail: {email}\n\nMessage:\n{message}"
         mail.send(msg)
 
@@ -62,46 +52,6 @@ def contact():
 
     return render_template("contact.html", page="Contact")
 
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        user = User.query.filter_by(email=email).first()
-
-        if user and check_password_hash(user.password_hash, password):
-            login_user(user)
-            flash("Logged in successfully.")
-            next_page = request.args.get('next')
-            return redirect(next_page or url_for('apply'))
-        else:
-            flash("Invalid email or password.")
-            return redirect(url_for('login'))
-
-    return render_template("login.html", page="Login")
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        role = request.form.get('role', 'User')
-
-        if User.query.filter_by(email=email).first():
-            flash("Email already exists.")
-            return redirect(url_for('signup'))
-
-        hashed_password = generate_password_hash(password)
-        new_user = User(email=email, password_hash=hashed_password, role=role)
-        db.session.add(new_user)
-        db.session.commit()
-
-        flash("Signup successful. You can now log in.")
-        return redirect(url_for('login'))
-
-    return render_template("signup.html", page="Signup")
-
 @app.route('/rpl')
 def rpl():
     return render_template("rpl.html", page="RPL")
@@ -109,56 +59,73 @@ def rpl():
 @app.route('/tif')
 def cpl():
     return render_template("tif.html", page="TIF")
+
 @app.route('/ppl')
 def ppl():
     return render_template("ppl.html", page="PPL")
 
 @app.route('/apply', methods=['GET', 'POST'])
-@login_required
 def apply():
     if request.method == 'POST':
         form = request.form
 
-        profile = UserProfile.query.filter_by(user_id=current_user.id).first()
-        if not profile:
-            profile = UserProfile(user_id=current_user.id)
-            db.session.add(profile)
+        # Check if user already exists
+        existing_user = User.query.filter_by(email=form['primary_email']).first()
 
-        profile.title = form['title'].title()
-        profile.first_name = form['first_name']
-        profile.middle_name = form.get('middle_name')
-        profile.last_name = form['last_name']
-        profile.date_of_birth = datetime.strptime(form['dob'], '%Y-%m-%d').date()
-        profile.gender = form['gender']
-        profile.primary_email = form['primary_email']
-        profile.alternative_email = form.get('alternative_email')
-        profile.mobile_number = form['mobile_number']
-        profile.home_phone = form.get('home_phone')
-        profile.emergency_name = form['emergency_name']
-        profile.emergency_relationship = form['emergency_relationship']
-        profile.emergency_phone = form['emergency_phone']
-        profile.nationality = form['nationality']
-        profile.country_of_birth = form['country_of_birth']
-        profile.citizenship_status = form['citizenship_status']
+        if existing_user:
+            user = existing_user
+        else:
+            user = User(
+                email=form['primary_email'],
+                password_hash='temporary',
+                role='User'
+            )
+            db.session.add(user)
+            db.session.commit()
 
-        education = EducationDetail.query.filter_by(user_id=current_user.id).first()
-        if not education:
-            education = EducationDetail(user_id=current_user.id)
-            db.session.add(education)
+        # Delete previous related data (if any) to avoid UNIQUE constraint errors
+        UserProfile.query.filter_by(user_id=user.id).delete()
+        EducationDetail.query.filter_by(user_id=user.id).delete()
+        LanguageSkill.query.filter_by(user_id=user.id).delete()
 
-        education.secondary_education_level = form['secondary_education_level']
-        education.highest_completed_level = form['highest_completed_level']
-        education.still_enrolled = bool(form.get('still_enrolled'))
-        education.previous_qualification = form.get('previous_qualification')
+        # Create and link UserProfile
+        profile = UserProfile(
+            user_id=user.id,
+            first_name=form['first_name'],
+            middle_name=form.get('middle_name'),
+            last_name=form['last_name'],
+            date_of_birth=datetime.strptime(form['dob'], '%Y-%m-%d').date(),
+            gender=form['gender'],
+            primary_email=form['primary_email'],
+            mobile_number=form['mobile_number'],
+            emergency_name=form['emergency_name'],
+            emergency_relationship=form['emergency_relationship'],
+            emergency_phone=form['emergency_phone'],
+            nationality=form['nationality'],
+            country_of_birth=form['country_of_birth'],
+            citizenship_status=form['citizenship_status']
+        )
+        db.session.add(profile)
 
-        language = LanguageSkill.query.filter_by(user_id=current_user.id).first()
-        if not language:
-            language = LanguageSkill(user_id=current_user.id)
-            db.session.add(language)
+        # Create and link EducationDetail
+        education = EducationDetail(
+            user_id=user.id,
+            secondary_education_level=form['secondary_education_level'],
+            highest_completed_level=form['highest_completed_level'],
+            still_enrolled=bool(form.get('still_enrolled')),
+            previous_qualification=form.get('previous_qualification') or None
+        )
+        db.session.add(education)
 
-        language.english_proficiency = form['english_proficiency']
-        language.other_languages = form.get('other_languages')
+        # Create and link LanguageSkill
+        language = LanguageSkill(
+            user_id=user.id,
+            english_proficiency=form['english_proficiency'],
+            other_languages=form.get('other_languages')
+        )
+        db.session.add(language)
 
+        # Commit all
         db.session.commit()
 
         # Generate PDF
@@ -167,7 +134,7 @@ def apply():
         pisa.CreatePDF(html, dest=pdf)
         pdf.seek(0)
 
-        # Email to recruiter
+        # Send to recruiter
         recruiter_msg = Message("New Application Submission",
                                 sender=app.config['MAIL_USERNAME'],
                                 recipients=["info.goldwingsaviation@gmail.com"],
@@ -176,7 +143,7 @@ def apply():
         recruiter_msg.attach("application.pdf", "application/pdf", pdf.read())
         mail.send(recruiter_msg)
 
-        # Email to user
+        # Send confirmation to applicant
         user_msg = Message("Application Received",
                            sender=app.config['MAIL_USERNAME'],
                            recipients=[form['primary_email']],
@@ -186,6 +153,7 @@ def apply():
         flash("Application submitted successfully. Confirmation email sent.", "success")
         return redirect(url_for('end'))
 
+    # Choices for the form
     title_choices = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr']
     gender_choices = ['Male', 'Female', 'Other']
     citizenship_choices = ['Citizen', 'Permanent Resident', 'International']
@@ -201,17 +169,8 @@ def apply():
                            english_proficiency_choices=english_proficiency_choices)
 
 @app.route('/end')
-@login_required
 def end():
     return render_template('end.html')
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
-
-
 
 @app.route('/subscribe', methods=['POST'])
 def subscribe():
@@ -223,13 +182,19 @@ def subscribe():
                       recipients=["info.goldwingsaviation@gmail.com"])
         msg.body = f"New subscriber: {email}"
         mail.send(msg)
-
         flash("Thank you for subscribing!", "success")
     else:
         flash("Please enter a valid email.", "danger")
 
     return redirect(request.referrer or url_for('home'))
 
+@app.route('/mission')
+def mission():
+    return render_template('mission.html', page="Our Mission")
+
+@app.route('/values')
+def values():
+    return render_template('values.html', page="Our Values")
 
 if __name__ == "__main__":
     with app.app_context():
