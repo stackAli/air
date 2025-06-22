@@ -17,8 +17,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'aftabdawood36@gmail.com'
-app.config['MAIL_PASSWORD'] = 'strx ybzm ekuo weux'
+app.config['MAIL_USERNAME'] = 'info.goldwingsaviation@gmail.com'
+app.config['MAIL_PASSWORD'] = 'bclh ncrq aawi rmeg' 
 mail = Mail(app)
 
 # Init DB and Login Manager
@@ -53,7 +53,7 @@ def contact():
         # Email to admin
         msg = Message(subject="New Contact Query",
                       sender=app.config['MAIL_USERNAME'],
-                      recipients=['aftabdawood36@gmail.com'])  # Admin Email
+                      recipients=['info.goldwingsaviation@gmail.com'])  # Admin Email
         msg.body = f"You have received a new contact message:\n\nName: {name}\nEmail: {email}\n\nMessage:\n{message}"
         mail.send(msg)
 
@@ -170,7 +170,8 @@ def apply():
         # Email to recruiter
         recruiter_msg = Message("New Application Submission",
                                 sender=app.config['MAIL_USERNAME'],
-                                recipients=["recruiter@example.com"],
+                                recipients=["info.goldwingsaviation@gmail.com"],
+                                reply_to=form['primary_email'],
                                 body="A new application has been submitted.")
         recruiter_msg.attach("application.pdf", "application/pdf", pdf.read())
         mail.send(recruiter_msg)
@@ -211,8 +212,6 @@ def logout():
     return redirect(url_for('login'))
 
 
-from flask import request, redirect, url_for, flash
-from flask_mail import Message
 
 @app.route('/subscribe', methods=['POST'])
 def subscribe():
@@ -221,7 +220,7 @@ def subscribe():
     if email:
         msg = Message("New Email Subscription",
                       sender=app.config['MAIL_USERNAME'],
-                      recipients=["aftabdawood36@gmail.com"])
+                      recipients=["info.goldwingsaviation@gmail.com"])
         msg.body = f"New subscriber: {email}"
         mail.send(msg)
 

@@ -4,64 +4,94 @@
     <meta charset="UTF-8">
     <title>Application PDF</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; }
-        h1 { color: #333; }
-        .section { margin-bottom: 20px; }
-        .label { font-weight: bold; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 40px;
+            color: #333;
+            line-height: 1.6;
+            background: #fdfdfd;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 3px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #2980b9;
+            font-size: 18px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .field {
+            margin: 8px 0;
+        }
+
+        .label {
+            display: inline-block;
+            width: 200px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .value {
+            display: inline-block;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <h1>Application Summary</h1>
 
     <div class="section">
-        <div class="label">Name:</div>
-        {{ form.title }} {{ form.first_name }} {{ form.middle_name }} {{ form.last_name }}
+        <h2>Personal Details</h2>
+        <div class="field"><span class="label">Full Name:</span><span class="value">{{ form.title }} {{ form.first_name }} {{ form.middle_name }} {{ form.last_name }}</span></div>
+        <div class="field"><span class="label">Date of Birth:</span><span class="value">{{ form.dob }}</span></div>
+        <div class="field"><span class="label">Gender:</span><span class="value">{{ form.gender }}</span></div>
+        <div class="field"><span class="label">Nationality:</span><span class="value">{{ form.nationality }}</span></div>
+        <div class="field"><span class="label">Country of Birth:</span><span class="value">{{ form.country_of_birth }}</span></div>
+        <div class="field"><span class="label">Citizenship Status:</span><span class="value">{{ form.citizenship_status }}</span></div>
     </div>
 
     <div class="section">
-        <div class="label">Date of Birth:</div>
-        {{ form.dob }}
+        <h2>Contact Information</h2>
+        <div class="field"><span class="label">Primary Email:</span><span class="value">{{ form.primary_email }}</span></div>
+        <div class="field"><span class="label">Alternative Email:</span><span class="value">{{ form.alternative_email }}</span></div>
+        <div class="field"><span class="label">Mobile Number:</span><span class="value">{{ form.mobile_number }}</span></div>
+        <div class="field"><span class="label">Home Phone:</span><span class="value">{{ form.home_phone }}</span></div>
     </div>
 
     <div class="section">
-        <div class="label">Gender:</div>
-        {{ form.gender }}
+        <h2>Emergency Contact</h2>
+        <div class="field"><span class="label">Name:</span><span class="value">{{ form.emergency_name }}</span></div>
+        <div class="field"><span class="label">Relationship:</span><span class="value">{{ form.emergency_relationship }}</span></div>
+        <div class="field"><span class="label">Phone:</span><span class="value">{{ form.emergency_phone }}</span></div>
     </div>
 
     <div class="section">
-        <div class="label">Email:</div>
-        {{ form.primary_email }} <br>
-        {{ form.alternative_email }}
+        <h2>Education</h2>
+        <div class="field"><span class="label">Secondary Level:</span><span class="value">{{ form.secondary_education_level }}</span></div>
+        <div class="field"><span class="label">Highest Completed:</span><span class="value">{{ form.highest_completed_level }}</span></div>
+        <div class="field"><span class="label">Still Enrolled:</span><span class="value">{{ form.still_enrolled }}</span></div>
+        <div class="field"><span class="label">Previous Qualification:</span><span class="value">{{ form.previous_qualification }}</span></div>
     </div>
 
     <div class="section">
-        <div class="label">Mobile:</div>
-        {{ form.mobile_number }} <br>
-        {{ form.home_phone }}
-    </div>
-
-    <div class="section">
-        <div class="label">Emergency Contact:</div>
-        {{ form.emergency_name }} - {{ form.emergency_relationship }} ({{ form.emergency_phone }})
-    </div>
-
-    <div class="section">
-        <div class="label">Nationality / Country of Birth / Citizenship:</div>
-        {{ form.nationality }} / {{ form.country_of_birth }} / {{ form.citizenship_status }}
-    </div>
-
-    <div class="section">
-        <div class="label">Education:</div>
-        Secondary: {{ form.secondary_education_level }} <br>
-        Highest Completed: {{ form.highest_completed_level }} <br>
-        Still Enrolled: {{ form.still_enrolled }} <br>
-        Previous Qualification: {{ form.previous_qualification }}
-    </div>
-
-    <div class="section">
-        <div class="label">Languages:</div>
-        English: {{ form.english_proficiency }} <br>
-        Other Languages: {{ form.other_languages }}
+        <h2>Language Skills</h2>
+        <div class="field"><span class="label">English Proficiency:</span><span class="value">{{ form.english_proficiency }}</span></div>
+        <div class="field"><span class="label">Other Languages:</span><span class="value">{{ form.other_languages }}</span></div>
     </div>
 </body>
 </html>
